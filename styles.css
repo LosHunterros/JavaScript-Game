@@ -1,0 +1,28 @@
+#board {
+  background-color: gray;
+  margin: 10% auto 0 auto;
+  width: 420px;
+  height: 420px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.empty {
+  border: 3px solid black;
+  width: 130px;
+  height: 130px;
+  background-color: blue;
+  margin: 2px;
+  gap: 5%;
+}
+.puzzle {
+  border: 3px solid black;
+  width: 130px;
+  height: 130px;
+  background-color: green;
+  margin: 2px;
+  gap: 5%;
+  color: azure;
+  font-size: x-large;
+  font-weight: bold;
+}
