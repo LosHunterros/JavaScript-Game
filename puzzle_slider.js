@@ -25,7 +25,7 @@ function getEmptyPosition() {
   let emptyX, emptyY;
   gameState.forEach((row, rowIndex) => {
     row.forEach((column, columnIndex) => {
-      if (column.innerText === "") {
+      if (column.innerHTML === "") {
         emptyX = rowIndex;
         emptyY = columnIndex;
       }
@@ -44,6 +44,7 @@ function checkIfValidMove(x, y, emptyX, emptyY) {
   );
 }
 
+//switch puzzle with empty space
 function movePuzzle(event) {
   let [x, y] = getPuzzlePositionOnBoard(event.target);
   let [emptyX, emptyY] = getEmptyPosition();
@@ -53,27 +54,24 @@ function movePuzzle(event) {
     emptyPuzzle.innerHTML += puzzleHTML;
     while (gameState[x][y].firstChild) {
       gameState[x][y].removeChild(gameState[x][y].firstChild);
-
-      console.log("Puzzle moved");
     }
+    console.log("Puzzle moved");
   }
 }
 
 // listiners for checking if functions work
 function puzzleClickListener(event) {
-  let puzzle = event.target;
-  let number = puzzle.innerText;
-  console.log(`Clicked: ${number}`);
+  console.log("clicked");
 }
 
 function puzzlePositionListener(event) {
   let [x, y] = getPuzzlePositionOnBoard(event.target);
-  console.log(`Row: ${x}, Column: ${y}`);
+  console.log(`Puzzle; Row: ${x}, Column: ${y}`);
 }
 
 function emptyPositionListener(event) {
   let [emptyX, emptyY] = getEmptyPosition(event.target);
-  console.log(`Row: ${emptyX}, Column: ${emptyY}`);
+  console.log(`Empty was: Row: ${emptyX}, Column: ${emptyY}`);
 }
 
 function validMoveListener(event) {
@@ -90,6 +88,15 @@ function puzzleMoveListener(event) {
   movePuzzle(event);
 }
 
+function puzzleNumberListener(event) {
+  let puzzle = event.target;
+  if (puzzle.tagName === "IMG") {
+    let fileName = puzzle.getAttribute("src");
+    let number = fileName.match(/(\d+)\.jpg$/)[1];
+    console.log(`Number: ${number}`);
+  }
+}
+
 puzzles.forEach((puzzle) => {
   puzzle.addEventListener("click", puzzleClickListener);
   puzzle.addEventListener("click", puzzlePositionListener);
@@ -97,4 +104,5 @@ puzzles.forEach((puzzle) => {
   puzzle.addEventListener("click", validMoveListener);
   puzzle.addEventListener("click", movePuzzle);
   puzzle.addEventListener("click", puzzleMoveListener);
+  puzzle.addEventListener("click", puzzleNumberListener);
 });
