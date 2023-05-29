@@ -11,7 +11,7 @@ function getPuzzlePositionOnBoard(target) {
   let x, y;
   gameState.forEach((row, rowIndex) => {
     row.forEach((column, columnIndex) => {
-      if (column === target) {
+      if (column === target || column.contains(target)) {
         x = rowIndex;
         y = columnIndex;
       }
@@ -44,16 +44,18 @@ function checkIfValidMove(x, y, emptyX, emptyY) {
   );
 }
 
-// move puzzle if valid move
 function movePuzzle(event) {
-  let puzzle = event.target;
-  let number = puzzle.innerText;
   let [x, y] = getPuzzlePositionOnBoard(event.target);
   let [emptyX, emptyY] = getEmptyPosition();
   if (checkIfValidMove(x, y, emptyX, emptyY)) {
-    gameState[x][y].innerText = "";
-    gameState[emptyX][emptyY].innerText = number;
-    console.log("Puzzle moved");
+    let puzzleHTML = gameState[x][y].innerHTML;
+    let emptyPuzzle = gameState[emptyX][emptyY];
+    emptyPuzzle.innerHTML += puzzleHTML;
+    while (gameState[x][y].firstChild) {
+      gameState[x][y].removeChild(gameState[x][y].firstChild);
+
+      console.log("Puzzle moved");
+    }
   }
 }
 

@@ -7,6 +7,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
 .empty {
   border: 3px solid black;
   width: 130px;
@@ -15,14 +16,29 @@
   margin: 2px;
   gap: 5%;
 }
+
 .puzzle {
+  position: relative;
   border: 3px solid black;
   width: 130px;
   height: 130px;
   background-color: green;
   margin: 2px;
   gap: 5%;
-  color: azure;
+}
+
+.puzzle p {
+  position: absolute;
+  z-index: 3;
+  color: black;
   font-size: x-large;
   font-weight: bold;
+}
+
+.puzzle img {
+  position: absolute;
+  z-index: 1;
+  object-fit: fill;
+  width: 130px;
+  height: 130px;
 }
