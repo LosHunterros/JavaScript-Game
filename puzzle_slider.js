@@ -5,7 +5,8 @@ const gameState = [
   [puzzles[3], puzzles[4], puzzles[5]],
   [puzzles[6], puzzles[7], puzzles[8]],
 ];
-
+let puzzleMoved = false;
+let count = 0;
 // Return clicked puzzle position in gameState
 function getPuzzlePositionOnBoard(target) {
   let x, y;
@@ -51,8 +52,16 @@ function movePuzzle(x, y, emptyX, emptyY) {
   emptyPuzzle.innerHTML += puzzleHTML;
   gameState[x][y].innerHTML = "";
   console.log("Puzzle moved");
+  puzzleMoved = true;
 }
-
+function moveCounter() {
+  if (puzzleMoved) {
+    count++;
+    let counter = document.getElementById("counter");
+    counter.innerText = `Moves ${count}`;
+    puzzleMoved = false;
+  }
+}
 // Puzzle click event listener
 function puzzleClickListener(event) {
   let [x, y] = getPuzzlePositionOnBoard(event.target);
@@ -81,5 +90,6 @@ board.addEventListener("click", function (event) {
   let [emptyX, emptyY] = getEmptyPosition();
   if (checkIfValidMove(x, y, emptyX, emptyY)) {
     movePuzzle(x, y, emptyX, emptyY);
+    moveCounter();
   }
 });
