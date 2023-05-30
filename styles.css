@@ -42,3 +42,13 @@
   width: 130px;
   height: 130px;
 }
+
+#counter {
+  margin: 20px auto 0 auto;
+  width: 20%;
+  font-size:x-large; 
+  padding: 5px;
+  border: 2px solid black;
+  background-color: green;
+  color: white;
+}
