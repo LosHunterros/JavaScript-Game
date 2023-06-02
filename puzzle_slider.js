@@ -107,6 +107,34 @@ function puzzleNumberListener(event) {
   }
 }
 
+// Check if Player won
+function checkIfWon() {
+  let k = 1;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (k < 9) {
+        currentPuzzle = gameState[i][j].getElementsByTagName("IMG");
+        if ( !currentPuzzle[0] || currentPuzzle[0].getAttribute("src") != `static/goldfish/${k}.jpg` ) {
+          console.log(false);
+          return false;
+        }
+      }
+      k++;
+    }
+  }
+  console.log(true);
+  return true
+}
+
+// Restart Game
+function restartGame() {
+  count = 0;
+  let counter = document.getElementById("counter");
+  counter.innerText = `Moves ${count}`;
+  puzzleMoved = false;
+  shuffle();
+};
+
 // Add event listeners to puzzles
 puzzles.forEach((puzzle) => {
   puzzle.addEventListener("click", puzzleClickListener);
@@ -124,5 +152,9 @@ board.addEventListener("click", function (event) {
     sfx.play();
     movePuzzle(x, y, emptyX, emptyY);
     moveCounter();
+    if ( checkIfWon() ) {
+      alert(`You won in ${count} moves! Klick 'ok' to play again`)
+      restartGame()
+    }
   }
 });
