@@ -153,8 +153,8 @@ board.addEventListener("click", function (event) {
     movePuzzle(x, y, emptyX, emptyY);
     moveCounter();
     if ( checkIfWon() ) {
-      alert(`You won in ${count} moves! Klick 'ok' to play again`)
-      restartGame()
+      restartGame() 
+      window.location.href = "winner.html"
     }
   }
 });
