@@ -1,6 +1,6 @@
 <div align="center">
 <h1>Puzzle Slider Game - JavaScript</h1>
-<img src="https://i.ibb.co/FzdwcDn/One-Step-To-Finde-Movie-for-Eavining.png" width="600">
+<img src="https://i.ibb.co/tMJpMq9/One-Step-To-Finde-Movie-for-Eavining.jpg" width="600">
 
 Welcome to the Puzzle Slider game in JavaScript! 🎮🧩
 </div>
